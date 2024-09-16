@@ -192,7 +192,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- NOTE: These are richard's keymaps.
 
-vim.keymap.set('n', '<leader><C-n>', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
+vim.keymap.set('n', '<leader><C-n>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle NvimTree' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
