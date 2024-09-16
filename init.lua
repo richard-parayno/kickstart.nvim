@@ -90,6 +90,9 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -186,6 +189,10 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- NOTE: These are richard's keymaps.
+
+vim.keymap.set('n', '<leader><C-n>', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -892,7 +899,9 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  { import = 'custom.plugins' },
+  {
+    import = 'custom.plugins',
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
