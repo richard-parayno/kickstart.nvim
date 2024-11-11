@@ -4,6 +4,7 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
+  lazy = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
@@ -11,7 +12,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
+    { '\\', ':Neotree position=left reveal<CR>', desc = 'NeoTree reveal' },
   },
   opts = {
     filesystem = {
@@ -21,5 +22,13 @@ return {
         },
       },
     },
+    hijack_netrw_behavior = 'open_current',
+    window = {
+      position = 'current', -- This ensures it opens in the current window
+    },
   },
+  init = function()
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+  end,
 }
