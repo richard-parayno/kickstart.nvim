@@ -90,9 +90,6 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -190,9 +187,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- NOTE: These are richard's keymaps.
+-- NOTE: These are richard's keymaps and autocmds.
 
-vim.keymap.set('n', '<leader><C-n>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle NvimTree' })
+-- vim.keymap.set('n', '<leader><C-n>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle [n]eotree' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
