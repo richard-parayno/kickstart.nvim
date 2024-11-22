@@ -190,7 +190,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- NOTE: These are richard's keymaps and autocmds.
 
 -- vim.keymap.set('n', '<leader><C-n>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle [n]eotree' })
-
+vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close tab' })
+vim.keymap.set('n', '<S-h>', '<cmd>tabprevious<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', '<S-l>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -593,6 +595,14 @@ require('lazy').setup({
             },
           },
         },
+
+        standardrb = {},
+
+        ruby_lsp = {},
+
+        stimulus_ls = {
+          filetypes = { 'html', 'erb', 'eruby' },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -611,6 +621,7 @@ require('lazy').setup({
         'prettierd', -- Prettierd formatter
         'eslint-lsp', -- ESLint LSP
         'typescript-language-server', -- typescript language server
+        'stimulus_ls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -664,6 +675,7 @@ require('lazy').setup({
         -- is found.
         javascript = { 'prettierd', 'prettier' },
         typescript = { 'prettierd', 'prettier' },
+        eruby = { 'htmlbeautifier' },
       },
     },
   },
@@ -828,7 +840,9 @@ require('lazy').setup({
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup {
+        use_icons = vim.g.have_nerd_font,
+      }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -923,3 +937,7 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.cmd [[
+  hi clear MatchParenCur
+  hi link MatchParenCur MatchParen
+]]
