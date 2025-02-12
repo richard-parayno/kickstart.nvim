@@ -596,8 +596,6 @@ require('lazy').setup({
           },
         },
 
-        standardrb = {},
-
         ruby_lsp = {},
 
         stimulus_ls = {
@@ -625,7 +623,10 @@ require('lazy').setup({
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       require('mason-lspconfig').setup {
+        ensure_installed = { 'ruby_lsp', 'tailwindcss' },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -633,7 +634,14 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            require('lspconfig')[server_name].setup {
+              capabilities = lsp_capabilities,
+              settings = {
+                tailwindCSS = {
+                  ['includedLanguages'] = { ['eruby'] = 'erb' },
+                },
+              },
+            }
           end,
         },
       }
