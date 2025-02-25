@@ -598,6 +598,10 @@ require('lazy').setup({
 
         ruby_lsp = {},
 
+        tailwindcss = {
+          filetypes = { 'erb', 'eruby' },
+        },
+
         stimulus_ls = {
           filetypes = { 'html', 'erb', 'eruby' },
         },
@@ -620,22 +624,21 @@ require('lazy').setup({
         'eslint-lsp', -- ESLint LSP
         'typescript-language-server', -- typescript language server
         'stimulus_ls',
+        'ruby_lsp',
+        'tailwindcss',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       require('mason-lspconfig').setup {
-        ensure_installed = { 'ruby_lsp', 'tailwindcss' },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup {
-              capabilities = lsp_capabilities,
               settings = {
                 tailwindCSS = {
                   ['includedLanguages'] = { ['eruby'] = 'erb' },
@@ -862,6 +865,8 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      require('mini.sessions').setup()
+      require('mini.starter').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
