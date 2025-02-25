@@ -11,9 +11,9 @@ return {
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
-  keys = {
-    { '\\', ':Neotree position=left reveal<CR>', desc = 'NeoTree reveal' },
-  },
+  -- keys = {
+  --   { '\\', ':Neotree position=left reveal<CR>', desc = 'NeoTree reveal' },
+  -- },
   opts = {
     filesystem = {
       window = {
