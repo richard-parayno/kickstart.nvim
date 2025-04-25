@@ -595,16 +595,6 @@ require('lazy').setup({
             },
           },
         },
-
-        ruby_lsp = {},
-
-        tailwindcss = {
-          filetypes = { 'erb', 'eruby' },
-        },
-
-        stimulus_ls = {
-          filetypes = { 'html', 'erb', 'eruby' },
-        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -632,27 +622,18 @@ require('lazy').setup({
       -- local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       require('mason-lspconfig').setup {
-        -- handlers = {
-        --   -- function(server_name)
-        --   --   local server = servers[server_name] or {}
-        --   --   -- This handles overriding only values explicitly passed
-        --   --   -- by the server configuration above. Useful when disabling
-        --   --   -- certain features of an LSP (for example, turning off formatting for tsserver)
-        --   --   require('lspconfig')[server_name].setup {
-        --   --     settings = {
-        --   --       tailwindCSS = {
-        --   --         ['includedLanguages'] = { ['eruby'] = 'erb' },
-        --   --       },
-        --   --     },
-        --   --   }
-        --   -- end,
-        -- },
         ensure_installed = ensure_installed,
         automatic_installation = true,
         handlers = {
           function(server_name)
             vim.lsp.enable(server_name)
           end,
+
+          vim.lsp.config('tailwindcss', {
+            settings = {
+              ['tailwindCSS'] = {},
+            },
+          }),
         },
       }
     end,
