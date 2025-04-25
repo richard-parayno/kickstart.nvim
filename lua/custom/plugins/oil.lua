@@ -206,7 +206,7 @@ return {
   },
 
   keys = {
-    { '\\', ':Oil --float <CR>', desc = 'Oil floating window' },
+    { '\\', '<CMD>Oil --float<CR>', desc = 'Oil floating window' },
   },
   -- Optional dependencies
   dependencies = { { 'echasnovski/mini.icons', opts = {} } },

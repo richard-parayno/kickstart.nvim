@@ -619,10 +619,10 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'prettierd', -- Prettierd formatter
-        'eslint-lsp', -- ESLint LSP
-        'typescript-language-server', -- typescript language server
+        -- 'stylua', -- Used to format Lua code
+        -- 'prettierd', -- Prettierd formatter
+        'eslint', -- ESLint LSP
+        'ts_ls', -- typescript language server
         'stimulus_ls',
         'ruby_lsp',
         'tailwindcss',
@@ -632,19 +632,26 @@ require('lazy').setup({
       -- local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       require('mason-lspconfig').setup {
+        -- handlers = {
+        --   -- function(server_name)
+        --   --   local server = servers[server_name] or {}
+        --   --   -- This handles overriding only values explicitly passed
+        --   --   -- by the server configuration above. Useful when disabling
+        --   --   -- certain features of an LSP (for example, turning off formatting for tsserver)
+        --   --   require('lspconfig')[server_name].setup {
+        --   --     settings = {
+        --   --       tailwindCSS = {
+        --   --         ['includedLanguages'] = { ['eruby'] = 'erb' },
+        --   --       },
+        --   --     },
+        --   --   }
+        --   -- end,
+        -- },
+        ensure_installed = ensure_installed,
+        automatic_installation = true,
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            require('lspconfig')[server_name].setup {
-              settings = {
-                tailwindCSS = {
-                  ['includedLanguages'] = { ['eruby'] = 'erb' },
-                },
-              },
-            }
+            vim.lsp.enable(server_name)
           end,
         },
       }
