@@ -628,12 +628,6 @@ require('lazy').setup({
           function(server_name)
             vim.lsp.enable(server_name)
           end,
-
-          vim.lsp.config('tailwindcss', {
-            settings = {
-              ['tailwindCSS'] = {},
-            },
-          }),
         },
       }
     end,
