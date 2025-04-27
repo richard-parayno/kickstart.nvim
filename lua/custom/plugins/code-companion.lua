@@ -3,10 +3,10 @@ return {
   opts = {
     strategies = {
       chat = {
-        adapter = 'anthropic',
+        adapter = 'gemini',
       },
       inline = {
-        adapter = 'anthropic',
+        adapter = 'gemini',
       },
     },
     log_level = 'ERROR',
@@ -16,6 +16,15 @@ return {
           schema = {
             model = {
               default = 'claude-3-5-sonnet-20241022',
+            },
+          },
+        })
+      end,
+      gemini = function()
+        return require('codecompanion.adapters').extend('gemini', {
+          schema = {
+            model = {
+              default = 'gemini-2.5-pro-exp-03-25',
             },
           },
         })
