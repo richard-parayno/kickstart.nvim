@@ -413,8 +413,8 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-      'williamboman/mason-lspconfig.nvim',
+      { 'mason-org/mason.nvim', version = '^1.0.0', config = true }, -- NOTE: Must be loaded before dependants
+      { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
@@ -620,13 +620,14 @@ require('lazy').setup({
         'stimulus_ls',
         'ruby_lsp',
         'tailwindcss',
+        'standardrb',
+        'erb-lint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       -- local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       require('mason-lspconfig').setup {
-        ensure_installed = ensure_installed,
         automatic_installation = true,
         handlers = {
           function(server_name)
@@ -634,6 +635,12 @@ require('lazy').setup({
           end,
         },
       }
+
+      vim.lsp.config('ruby_lsp', {
+        init_options = {
+          formatter = 'erb-lint',
+        },
+      })
     end,
   },
 
@@ -675,6 +682,13 @@ require('lazy').setup({
         eruby = { 'htmlbeautifier' },
       },
     },
+  },
+
+  {
+    'zapling/mason-conform.nvim',
+    config = function()
+      require('mason-conform').setup {}
+    end,
   },
 
   { -- Autocompletion
