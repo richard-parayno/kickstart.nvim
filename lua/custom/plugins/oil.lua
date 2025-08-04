@@ -83,7 +83,7 @@ return {
     use_default_keymaps = true,
     view_options = {
       -- Show files and directories that start with "."
-      show_hidden = false,
+      show_hidden = true,
       -- This function defines what is considered a "hidden" file
       is_hidden_file = function(name, bufnr)
         local m = name:match '^%.'
@@ -127,10 +127,10 @@ return {
     -- Configuration for the floating window in oil.open_float
     float = {
       -- Padding around the floating window
-      padding = 2,
+      padding = 3,
       -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-      max_width = 0,
-      max_height = 0,
+      max_width = 0.7,
+      max_height = 0.8,
       border = 'rounded',
       win_options = {
         winblend = 0,
