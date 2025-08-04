@@ -19,6 +19,7 @@ return {
         transparent = true,
         solid = true,
       },
+      auto_integrations = true,
     },
   },
 }
