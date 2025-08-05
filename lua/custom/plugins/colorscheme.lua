@@ -39,7 +39,7 @@ return {
         },
       }
 
-      vim.cmd.colorscheme 'ayu'
+      vim.cmd.colorscheme 'ayu-mirage'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
