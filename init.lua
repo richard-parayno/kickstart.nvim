@@ -192,7 +192,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- NOTE: These are richard's keymaps and autocmds.
 
 -- vim.keymap.set('n', '<leader><C-n>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle [n]eotree' })
-vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close tab' })
+vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close Tab' })
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<CR>', { desc = 'New Tab' })
 vim.keymap.set('n', '<S-h>', '<cmd>tabprevious<CR>', { desc = 'Previous tab' })
 vim.keymap.set('n', '<S-l>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
 -- [[ Basic Autocommands ]]
@@ -414,12 +415,10 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-
       {
         'mason-org/mason.nvim',
         opts = {},
       },
-
       {
         'mason-org/mason-lspconfig.nvim',
         opts = {},
@@ -473,6 +472,12 @@ require('lazy').setup({
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+
+      -- Enable LSP
+      vim.lsp.enable 'herb_ls'
+      vim.lsp.enable 'ruby_lsp'
+      vim.lsp.enable 'stimulus_ls'
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -856,3 +861,6 @@ vim.cmd [[
   hi clear MatchParenCur
   hi link MatchParenCur MatchParen
 ]]
+
+vim.keymap.set('n', '<leader>.h', ':TailwindConcealToggle<CR>', { desc = 'Toggle for concealing tailwind classes' })
+vim.keymap.set('n', '<leader>.c', ':TailwindColorToggle<CR>', { desc = 'Toggle tailwind colors' })
