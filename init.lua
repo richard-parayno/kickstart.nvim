@@ -421,11 +421,35 @@ require('lazy').setup({
       },
       {
         'mason-org/mason-lspconfig.nvim',
-        opts = {},
+        opts = {
+          ensure_installed = {
+            'lua_ls',
+            'ruby_lsp',
+            'herb_ls',
+            'standardrb',
+            'stimulus_ls',
+            'ts_ls',
+            'tailwindcss',
+          },
+        },
         dependencies = {
           { 'mason-org/mason.nvim', opts = {} },
           'neovim/nvim-lspconfig',
         },
+      },
+      {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        requires = {
+          'williamboman/mason.nvim',
+        },
+        config = function()
+          require('mason-tool-installer').setup {
+            ensure_installed = {
+              'prettierd',
+              'stylua',
+            },
+          }
+        end,
       },
 
       -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -477,6 +501,18 @@ require('lazy').setup({
       vim.lsp.enable 'herb_ls'
       vim.lsp.enable 'ruby_lsp'
       vim.lsp.enable 'stimulus_ls'
+      vim.lsp.enable 'standardrb'
+      vim.lsp.enable 'ts_ls'
+
+      -- Config LSP
+      vim.lsp.config('herb_ls', {
+        filetypes = { 'eruby', 'html' },
+        settings = {
+          formatter = {
+            enabled = true,
+          },
+        },
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -603,9 +639,6 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { 'prettierd', 'prettier' },
-        typescript = { 'prettierd', 'prettier' },
-        eruby = { 'htmlbeautifier' },
       },
     },
   },
