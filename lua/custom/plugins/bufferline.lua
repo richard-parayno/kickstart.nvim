@@ -24,7 +24,7 @@ return {
         offsets = {},
         show_tab_indicators = false,
       },
-      highlights = require('catppuccin.groups.integrations.bufferline').get(),
+      highlights = require('catppuccin.groups.integrations.bufferline').get_theme(),
     }
   end,
 }
