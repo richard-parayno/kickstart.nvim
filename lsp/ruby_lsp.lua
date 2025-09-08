@@ -7,8 +7,8 @@ return {
   root_markers = { 'Gemfile', '.git' },
 
   init_options = {
-    formatter = 'standard',
-    linters = { 'standard' },
+    formatter = 'rubocop_internal',
+    linters = { 'rubocop_internal' },
     addonSettings = {
       ['Ruby LSP Rails'] = {
         enablePendingMigrationsPrompt = false,

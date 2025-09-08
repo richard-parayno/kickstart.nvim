@@ -7,5 +7,16 @@ return {
     'nvim-telescope/telescope.nvim', -- optional
     'neovim/nvim-lspconfig', -- optional
   },
-  opts = {}, -- your configuration
+  opts = {
+    server = {
+      override = true,
+      settings = {
+        classFunctions = { '%w\\[([^\\]]*)\\]' },
+        includeLanguages = {
+          eruby = 'html',
+          ruby = 'html',
+        },
+      },
+    },
+  },
 }

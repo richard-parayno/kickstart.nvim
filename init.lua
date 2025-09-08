@@ -425,8 +425,7 @@ require('lazy').setup({
           ensure_installed = {
             'lua_ls',
             'ruby_lsp',
-            'herb_ls',
-            'standardrb',
+            'rubocop',
             'stimulus_ls',
             'ts_ls',
             'tailwindcss',
@@ -498,21 +497,22 @@ require('lazy').setup({
       --    function will be executed to configure the current buffer
 
       -- Enable LSP
-      vim.lsp.enable 'herb_ls'
+      -- vim.lsp.enable 'herb_ls'
       vim.lsp.enable 'ruby_lsp'
       vim.lsp.enable 'stimulus_ls'
-      vim.lsp.enable 'standardrb'
+      vim.lsp.enable 'rubocop'
       vim.lsp.enable 'ts_ls'
+      vim.lsp.enable 'tailwindcss'
 
       -- Config LSP
-      vim.lsp.config('herb_ls', {
-        filetypes = { 'eruby', 'html' },
-        settings = {
-          formatter = {
-            enabled = true,
-          },
-        },
-      })
+      -- vim.lsp.config('herb_ls', {
+      --   filetypes = { 'eruby', 'html' },
+      --   settings = {
+      --     formatter = {
+      --       enabled = true,
+      --     },
+      --   },
+      -- })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -634,11 +634,13 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
+        ruby = { 'rubocop' },
+        eruby = { 'erb_format' },
+      },
+      formatters = {
+        rubocop = {
+          args = { '--server', '--auto-correct-all', '--stderr', '--force-exclusion', '--stdin', '$FILENAME' },
+        },
       },
     },
   },
