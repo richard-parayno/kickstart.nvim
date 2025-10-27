@@ -362,6 +362,9 @@ require('lazy').setup({
           commands = {
             theme = 'dropdown',
           },
+          colorscheme = {
+            enable_preview = true,
+          },
         },
         extensions = {
           ['ui-select'] = {
@@ -540,20 +543,14 @@ require('lazy').setup({
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        ruby = { 'rubocop' },
         eruby = { 'erb_format' },
       },
-      formatters = {
-        rubocop = {
-          args = { '--server', '--auto-correct-all', '--stderr', '--force-exclusion', '--stdin', '$FILENAME' },
-        },
-      },
+      formatters = {},
     },
   },
 

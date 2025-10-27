@@ -24,27 +24,13 @@ return {
   },
   {
     'Shatur/neovim-ayu',
+    name = 'neovim-ayu',
     config = function()
       require('ayu').setup {
-        overrides = {
-          Normal = { bg = 'None' },
-          NormalFloat = { bg = 'none' },
-          ColorColumn = { bg = 'None' },
-          SignColumn = { bg = 'None' },
-          Folded = { bg = 'None' },
-          FoldColumn = { bg = 'None' },
-          CursorLine = { bg = 'None' },
-          CursorColumn = { bg = 'None' },
-          VertSplit = { bg = 'None' },
-        },
+        mirage = true,
+        terminal = true,
       }
-    end,
-  },
-  {
-    'Everblush/nvim',
-    name = 'everblush',
-    config = function()
-      require('everblush').setup {}
+      vim.cmd.colorscheme 'ayu'
     end,
   },
   {
@@ -56,13 +42,5 @@ return {
     lazy = false,
     priority = 1000,
     -- you can set set configuration options here
-    config = function()
-      vim.g.neobones_darken_comments = 45
-      vim.g.neobones_transparent_background = true
-      vim.g.neobones_solid_vert_split = true
-      -- vim.g.neobones_solid_line_nr = true
-      vim.g.neobones_solid_float_border = true
-      vim.cmd.colorscheme 'neobones'
-    end,
   },
 }
