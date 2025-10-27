@@ -18,7 +18,7 @@ return {
         globalstatus = false,
         refresh = {
           statusline = 1000,
-          tabline = 1000,
+          tabline = 200,
           winbar = 1000,
           refresh_time = 16, -- ~60fps
           events = {
@@ -86,7 +86,21 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      tabline = {
+        lualine_a = {
+          {
+            'tabs',
+            mode = 2,
+            path = 0,
+            show_modified_status = true,
+          },
+        },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { { 'filename', file_status = true, path = 1 } },
+        lualine_z = {},
+      },
       winbar = {},
       inactive_winbar = {},
       extensions = {},
