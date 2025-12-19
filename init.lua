@@ -723,7 +723,5 @@ vim.cmd [[
   hi link MatchParenCur MatchParen
 ]]
 
-vim.cmd.colorscheme 'zenbones'
-
 vim.keymap.set('n', '<leader>.h', ':TailwindConcealToggle<CR>', { desc = 'Toggle for concealing tailwind classes' })
 vim.keymap.set('n', '<leader>.c', ':TailwindColorToggle<CR>', { desc = 'Toggle tailwind colors' })

@@ -39,7 +39,6 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
-          'filename',
           -- Copilot status
           {
             function()
@@ -81,8 +80,8 @@ return {
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
+        lualine_c = {},
+        lualine_x = {},
         lualine_y = {},
         lualine_z = {},
       },
@@ -90,19 +89,43 @@ return {
         lualine_a = {
           {
             'tabs',
-            mode = 2,
+            mode = 1,
             path = 0,
             show_modified_status = true,
+            max_length = vim.o.columns * 2 / 3,
           },
         },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { { 'filename', file_status = true, path = 1 } },
+        lualine_y = {},
         lualine_z = {},
       },
-      winbar = {},
-      inactive_winbar = {},
+      winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {
+          {
+            'filename',
+            path = 1,
+          },
+        },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+      inactive_winbar = {
+
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { {
+          'filename',
+          path = 1,
+        } },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
       extensions = {},
     }
   end,
